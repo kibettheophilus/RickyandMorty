@@ -6,6 +6,7 @@ import dev.kibet.domain.models.Characters
 fun ResultDto.toDomain(): Characters {
     return Characters(
         name = name,
-        image = image
+        image = image,
+        id = id
     )
 }
