@@ -20,7 +20,7 @@ on:
           bundle install --jobs 4 --retry 3
           
      - name: Create Firebase Service Credentials file
-        run: |
+        run:|
           echo "$FIREBASE_CREDENTIALS" > firebase_credentials.json.b64
           base64 -d -i firebase_credentials.json.b64 > firebase_credentials.json
         env:
