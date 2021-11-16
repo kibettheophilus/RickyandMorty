@@ -21,6 +21,17 @@ platform :android do
     gradle(task: "test")
   end
 
+  desc "Lane for distributing app using Firebase App Distribution"
+  lane :distribute do
+    gradle(task: "clean assembleRelease")
+    firebase_app_distribution(
+        service_credentials_file: "firebase_credentials.json",
+        app: ENV['FIREBASE_APP_ID'],
+        release_notes_file: "FirebaseAppDistributionConfig/release_notes.txt",
+        groups_file: "FirebaseAppDistributionConfig/groups.txt"
+        )
+  end
+
   desc "Submit a new Beta Build to Crashlytics Beta"
   lane :beta do
     gradle(task: "clean assembleRelease")
