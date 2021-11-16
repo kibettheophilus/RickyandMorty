@@ -4,7 +4,7 @@ on:
   push:
      branches: [ master ]
  
-  jobs:
+jobs:
   distrbute: 
     runs-on: ubuntu-latest
     
@@ -12,7 +12,7 @@ on:
      - uses: actions/checkout@v2
      - uses: actions/setup-ruby@v1
        with: 
-       ruby-version: '2.6'
+         ruby-version: '2.6'
        
      - name: Install bundle
         run:|
@@ -23,11 +23,11 @@ on:
         run:|
           echo "$FIREBASE_CREDENTIALS" > firebase_credentials.json.b64
           base64 -d -i firebase_credentials.json.b64 > firebase_credentials.json
-        env:
-          FIREBASE_CREDENTIALS: ${{ secrets.FIREBASE_CREDENTIALS }}
+       env:
+         FIREBASE_CREDENTIALS: ${{ secrets.FIREBASE_CREDENTIALS }}
           
           
-        - name: Distribute app with 🔥 App Distribution 🚀
-        run: bundle exec fastlane distribute
-        env:
-          FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
+     - name: Distribute app with 🔥 App Distribution 🚀
+       run: bundle exec fastlane distribute
+       env:
+        FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
