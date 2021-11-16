@@ -36,12 +36,7 @@ jobs:
 
       - name: Grant Permission to Execute
         run: chmod +x gradlew
-
-      - name: Install bundle
-        run: |
-          bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3
-
+        
       - name: Create Firebase Service Credentials file
         run: |
           echo "$FIREBASE_CREDENTIALS" > firebase_credentials.json.b64
