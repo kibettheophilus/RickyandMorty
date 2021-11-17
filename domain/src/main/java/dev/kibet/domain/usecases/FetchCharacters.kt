@@ -1,12 +1,12 @@
 package dev.kibet.domain.usecases
 
-import dev.kibet.domain.models.Characters
+import dev.kibet.domain.models.Character
 import dev.kibet.domain.repository.CharactersRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
 class FetchCharacters(private val repository: CharactersRepository) {
-    suspend operator fun invoke(): Flow<List<Characters>> {
+    suspend operator fun invoke(): Flow<List<Character>> {
         return flowOf(repository.getAllCharacters())
     }
 }

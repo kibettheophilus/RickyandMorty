@@ -6,19 +6,19 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import dev.kibet.domain.models.Characters
+import dev.kibet.domain.models.Character
 import dev.kibet.presentation.databinding.CharacterItemBinding
 
 class CharactersAdapter : RecyclerView.Adapter<CharactersAdapter.CharacterViewHolder>() {
     inner class CharacterViewHolder(val binding: CharacterItemBinding) :
         RecyclerView.ViewHolder(binding.root)
 
-    private val diffCallBack = object : DiffUtil.ItemCallback<Characters>() {
-        override fun areItemsTheSame(oldItem: Characters, newItem: Characters): Boolean {
+    private val diffCallBack = object : DiffUtil.ItemCallback<Character>() {
+        override fun areItemsTheSame(oldItem: Character, newItem: Character): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: Characters, newItem: Characters): Boolean {
+        override fun areContentsTheSame(oldItem: Character, newItem: Character): Boolean {
             return oldItem == newItem
         }
     }
@@ -48,9 +48,9 @@ class CharactersAdapter : RecyclerView.Adapter<CharactersAdapter.CharacterViewHo
 
     override fun getItemCount(): Int = differ.currentList.size
 
-    private var onItemClickListener: ((Characters) -> Unit)? = null
+    private var onItemClickListener: ((Character) -> Unit)? = null
 
-    fun setOnItemClickListener(listener: (Characters) -> Unit) {
+    fun setOnItemClickListener(listener: (Character) -> Unit) {
         this.onItemClickListener = listener
     }
 }
