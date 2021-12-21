@@ -53,7 +53,7 @@ class HomeFragment : Fragment() {
 
     private fun setupAdapterListener() {
         charactersAdapter.setOnItemClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(it.name)
+            val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(it.id)
             findNavController().navigate(action)
         }
     }

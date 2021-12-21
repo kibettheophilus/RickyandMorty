@@ -41,7 +41,7 @@ class CharactersViewModel(
         }
     }
 
-    private fun getSingleCharacter(id: Int) {
+    fun getSingleCharacter(id: Int) {
         viewModelScope.launch {
             try {
                 fetchSingleCharacter(id).collect { character ->
