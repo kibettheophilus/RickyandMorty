@@ -1,10 +1,14 @@
 package dev.kibet.presentation.viewmodel
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dev.kibet.domain.models.Character
 import dev.kibet.domain.models.state.UiState
 import dev.kibet.domain.usecases.FetchCharacters
 import dev.kibet.domain.usecases.FetchSingleCharacter
+import dev.kibet.domain.utils.Resource
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
@@ -18,8 +22,8 @@ class CharactersViewModel(
     private val _fetchCharactersStatus = MutableStateFlow<UiState>(UiState.Loading)
     val fetchCharactersStatus: StateFlow<UiState> = _fetchCharactersStatus
 
-    private val _fetchSingleCharacterStatus = MutableStateFlow<UiState>(UiState.Loading)
-    val fetchSingleCharacterStatus: StateFlow<UiState> = _fetchSingleCharacterStatus
+    private val _fetchSingleCharacterStatus = MutableLiveData<Resource<Character>>()
+    val fetchSingleCharacterStatus: LiveData<Resource<Character>> = _fetchSingleCharacterStatus
 
     init {
         getCharacters()
@@ -45,14 +49,14 @@ class CharactersViewModel(
         viewModelScope.launch {
             try {
                 fetchSingleCharacter(id).collect { character ->
-                    _fetchSingleCharacterStatus.value = UiState.Success(character)
+                    _fetchSingleCharacterStatus.value = Resource.success(character)
                 }
             } catch (e: Exception) {
                 _fetchSingleCharacterStatus.value =
-                    UiState.Error(e.localizedMessage ?: "Problem Connecting to internet")
+                    Resource.error(e.localizedMessage ?: "Problem Connecting to internet",null)
             } catch (e: IOException) {
                 _fetchSingleCharacterStatus.value =
-                    UiState.Error(e.localizedMessage ?: "Unknown error occured")
+                    Resource.error(e.localizedMessage ?: "Unknown error occured", null)
             }
         }
     }

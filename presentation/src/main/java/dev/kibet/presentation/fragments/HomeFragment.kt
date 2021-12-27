@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -66,7 +67,7 @@ class HomeFragment : Fragment() {
                         charactersAdapter.differ.submitList(it.data as List<Character>)
                         hideProgressBar()
                     }
-                    is UiState.Loading -> progressBar.visibility = View.VISIBLE
+                    is UiState.Loading -> progressBar.isVisible = true
                     is UiState.Error -> {
                         Toast.makeText(context, "${it.error}", Toast.LENGTH_LONG)
                             .show()
@@ -78,7 +79,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun hideProgressBar() {
-        progressBar.visibility = View.GONE
+        progressBar.isVisible = false
     }
 
     override fun onDestroyView() {
