@@ -29,7 +29,7 @@ class CharactersViewModel(
         getCharacters()
     }
 
-    private fun getCharacters() {
+    fun getCharacters() {
         viewModelScope.launch {
             try {
                 fetchCharacters().collect { characters ->
