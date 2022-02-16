@@ -8,9 +8,8 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.stub
 import dev.kibet.data.local.dao.CharactersDao
 import dev.kibet.data.local.db.CharactersDatabase
-import dev.kibet.data.mappers.toEntity
 import dev.kibet.data.remote.api.CharactersApi
-import dev.kibet.data.remote.models.* // ktlint-disable no-wildcard-imports
+import dev.kibet.data.remote.models.*
 import dev.kibet.domain.models.Character
 import kotlinx.coroutines.runBlocking
 import org.junit.After
@@ -32,23 +31,37 @@ class CharacterRepositoryImplTest {
 
     // utilities
     private val character = Character(1, "Test Character", "image")
-    private val character2 = Character(2, "Test Character 2", "image")
+    private val character2 = Character(2, "Test Character2", "image")
     private val characterDto = ResultDto(
         "",
         listOf(),
         "",
         1,
-        "",
+        "image",
         LocationDto("", ""),
-        "",
+        "Test Character",
         OriginDto("", ""),
         "",
         "",
         "",
         ""
     )
-    private val responseDto = CharacterResponseDto(InfoDto(1, "", 2, 4f), listOf(characterDto))
-    private val characters = listOf(character)
+    private val characterDto2 = ResultDto(
+        "",
+        listOf(),
+        "",
+        2,
+        "image",
+        LocationDto("", ""),
+        "Test Character2",
+        OriginDto("", ""),
+        "",
+        "",
+        "",
+        ""
+    )
+    private val responseDto = CharacterResponseDto(InfoDto(1, "", 2, 4f), listOf(characterDto, characterDto2))
+    private val characters = listOf(character, character2)
 
     @Before
     fun setup() {
@@ -72,8 +85,8 @@ class CharacterRepositoryImplTest {
 
     @Test
     fun getAllCharacters() = runBlocking {
-        val results = listOf(character, character2).map { it.toEntity() }
-        charactersDao.saveCharacters(results)
-        assertThat(repositoryImpl.getAllCharacters().size).isEqualTo(2)
+        assertThat(repositoryImpl.getAllCharacters()).isEqualTo(
+            characters
+        )
     }
 }
