@@ -11,6 +11,7 @@ class CharacterRepositoryImpl(private val api: CharactersApi, private val dao: C
     CharactersRepository {
     override suspend fun getAllCharacters(): List<Character> {
         val characters = dao.getCharacters()
+
         if (characters.size > 1) {
             return characters.map { it.toDomain() }
         } else {
