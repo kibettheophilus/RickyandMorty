@@ -75,4 +75,9 @@ dependencies {
     testImplementation "org.robolectric:robolectric:4.5.1"
     androidTestImplementation "org.robolectric:robolectric:4.5.1"
 
+    // MockWebServer
+    testImplementation "com.squareup.okhttp3:mockwebserver:4.7.2"
+
+
+
 }

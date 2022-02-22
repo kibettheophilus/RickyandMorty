@@ -18,39 +18,43 @@ import org.junit.runner.RunWith
 @SmallTest
 class CharactersDaoTest {
 
-    private lateinit var database: CharactersDatabase
+    // SUT : subject under test
     private lateinit var charactersDao: CharactersDao
 
-    @Before
-    fun setup() {
-        database = Room.inMemoryDatabaseBuilder(
-            ApplicationProvider.getApplicationContext(),
-            CharactersDatabase::class.java
-        ).allowMainThreadQueries().build()
-        charactersDao = database.charactersDao()
-    }
+    // Helpers
+    private lateinit var database: CharactersDatabase
 
-    @After
+
+//    @Before
+//    fun setup() {
+//        database = Room.inMemoryDatabaseBuilder(
+//            ApplicationProvider.getApplicationContext(),
+//            CharactersDatabase::class.java
+//        ).allowMainThreadQueries().build()
+//        charactersDao = database.charactersDao()
+//    }
+
+    /*@After
     fun tearDown() {
         database.close()
-    }
+    }*/
 
-    @Test
+  /*  @Test
     fun saveCharacters() = runBlocking {
         val characters = listOf(Character(11, "testOne", "")).map { it.toEntity() }
         charactersDao.saveCharacters(characters)
         val cacheResponse = charactersDao.getCharacters()
         assertThat(cacheResponse).isEqualTo(characters)
-    }
+    }*/
 
-    @Test
+   /* @Test
     fun getCharacters() = runBlocking {
         val characterList = listOf(Character(11, "testOne", "")).map { it.toEntity() }
         charactersDao.saveCharacters(characterList)
         assertThat(charactersDao.getCharacters()).isEqualTo(characterList)
-    }
+    }*/
 
-    @Test
+    /*@Test
     fun getSingleCharacter() = runBlocking {
         val characterList = listOf(
             Character(11, "testOne", ""),
@@ -58,5 +62,5 @@ class CharactersDaoTest {
         ).map { it.toEntity() }
         charactersDao.saveCharacters(characterList)
         assertThat(charactersDao.getSingleCharacter(2)).isEqualTo(Character(2, "Victor Nyambura", "").toEntity())
-    }
+    }*/
 }
