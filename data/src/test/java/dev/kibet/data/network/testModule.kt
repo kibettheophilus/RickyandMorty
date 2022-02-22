@@ -28,6 +28,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class CharactersApiTestUsingMockWebServer {
 
+    // region SUT: Subject Under Test
+    private val charactersApiService by lazy {
+        retrofit.create(CharactersApi::class.java)
+    }
+    // endregion
+
+    // region Initialization
     @get:Rule
     val mockWebServer = MockWebServer()
 
@@ -37,11 +44,9 @@ class CharactersApiTestUsingMockWebServer {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
+    // endregion
 
-    private val charactersApiService by lazy {
-        retrofit.create(CharactersApi::class.java)
-    }
-
+    // region Helpers && Utilities
     private val testJson = """{ "info": {
         "count": 826,
         "pages": 42,
@@ -206,7 +211,9 @@ class CharactersApiTestUsingMockWebServer {
             )
         )
     )
+    // endregion
 
+    // region getAllCharacters Test
     @Test
     fun `getAllCharacters returns a character response dto`() = runBlocking {
         mockWebServer.enqueue(
@@ -218,12 +225,13 @@ class CharactersApiTestUsingMockWebServer {
         assertThat(test).isEqualTo(expectedResponse)
         assertThat("/character").isEqualTo(mockWebServer.takeRequest().path)
     }
+    // endregion
 }
 
 @RunWith(RobolectricTestRunner::class)
 class CharactersApiTestUsingMockito {
 
-    // region: Initilization
+    // region: Initialization
 
     // SUT: Subject under test
     private lateinit var charactersApi: CharactersApi
