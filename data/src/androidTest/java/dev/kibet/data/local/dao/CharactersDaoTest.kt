@@ -25,42 +25,43 @@ class CharactersDaoTest {
     private lateinit var database: CharactersDatabase
 
 
-//    @Before
-//    fun setup() {
-//        database = Room.inMemoryDatabaseBuilder(
-//            ApplicationProvider.getApplicationContext(),
-//            CharactersDatabase::class.java
-//        ).allowMainThreadQueries().build()
-//        charactersDao = database.charactersDao()
-//    }
+    @Before
+    fun setup() {
+        database = Room.inMemoryDatabaseBuilder(
+            ApplicationProvider.getApplicationContext(),
+            CharactersDatabase::class.java
+        ).allowMainThreadQueries().build()
+        charactersDao = database.charactersDao()
+    }
 
-    /*@After
+    @After
     fun tearDown() {
         database.close()
-    }*/
+    }
 
-  /*  @Test
+   @Test
     fun saveCharacters() = runBlocking {
         val characters = listOf(Character(11, "testOne", "")).map { it.toEntity() }
+        assertThat(charactersDao.getCharacters().size).isEqualTo(0)
         charactersDao.saveCharacters(characters)
         val cacheResponse = charactersDao.getCharacters()
         assertThat(cacheResponse).isEqualTo(characters)
-    }*/
+    }
 
-   /* @Test
+    @Test
     fun getCharacters() = runBlocking {
         val characterList = listOf(Character(11, "testOne", "")).map { it.toEntity() }
         charactersDao.saveCharacters(characterList)
         assertThat(charactersDao.getCharacters()).isEqualTo(characterList)
-    }*/
+    }
 
-    /*@Test
+    @Test
     fun getSingleCharacter() = runBlocking {
         val characterList = listOf(
             Character(11, "testOne", ""),
-            Character(2, "Victor Nyambura", "")
+            Character(2, "Test one", "")
         ).map { it.toEntity() }
         charactersDao.saveCharacters(characterList)
-        assertThat(charactersDao.getSingleCharacter(2)).isEqualTo(Character(2, "Victor Nyambura", "").toEntity())
-    }*/
+        assertThat(charactersDao.getSingleCharacter(2)).isEqualTo(Character(2, "Test one", "").toEntity())
+    }
 }

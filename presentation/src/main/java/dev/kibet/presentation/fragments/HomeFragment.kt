@@ -61,20 +61,20 @@ class HomeFragment : Fragment() {
 
     private fun setupViewModel() {
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            viewModel.fetchCharactersStatus.collect {
-                when (it) {
-                    is UiState.Success -> {
-                        charactersAdapter.differ.submitList(it.data as List<Character>)
-                        hideProgressBar()
-                    }
-                    is UiState.Loading -> progressBar.isVisible = true
-                    is UiState.Error -> {
-                        Toast.makeText(context, "${it.error}", Toast.LENGTH_LONG)
-                            .show()
-                        hideProgressBar()
-                    }
-                }
-            }
+//            viewModel.fetchCharactersStatus.collect {
+//                when (it) {
+//                    is UiState.Success -> {
+//                        charactersAdapter.differ.submitList(it.data as List<Character>)
+//                        hideProgressBar()
+//                    }
+//                    is UiState.Loading -> progressBar.isVisible = true
+//                    is UiState.Error -> {
+//                        Toast.makeText(context, "${it.error}", Toast.LENGTH_LONG)
+//                            .show()
+//                        hideProgressBar()
+//                    }
+//                }
+//            }
         }
     }
 

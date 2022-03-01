@@ -63,7 +63,7 @@ class CharacterRepositoryImplTest {
     private val responseDto = CharacterResponseDto(InfoDto(1, "", 2, 4f), listOf(characterDto, characterDto2))
     private val characters = listOf(character, character2)
 
-/*    @Before
+    @Before
     fun setup() {
         apiService = mock()
         apiService.stub {
@@ -76,17 +76,17 @@ class CharacterRepositoryImplTest {
         ).allowMainThreadQueries().build()
         charactersDao = dataBase.charactersDao()
         repositoryImpl = CharacterRepositoryImpl(apiService, charactersDao)
-    }*/
+    }
 
-   /* @After
+    @After
     fun tearDown() {
         dataBase.close()
-    }*/
+    }
 
-    /*@Test
+    @Test
     fun getAllCharacters() = runBlocking {
         assertThat(repositoryImpl.getAllCharacters()).isEqualTo(
             characters
         )
-    }*/
+    }
 }

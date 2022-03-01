@@ -1,42 +1,29 @@
 package dev.kibet.presentation.viewmodel
 
-import dev.kibet.data.repository.FakeRepositoryImpl
 import dev.kibet.domain.usecases.FetchCharacters
 import dev.kibet.domain.usecases.FetchSingleCharacter
+import dev.kibet.presentation.utils.MainCoroutineRule
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
-import org.junit.After
-import org.junit.Assert.*
-import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.junit.runners.JUnit4
 
+@OptIn(ExperimentalCoroutinesApi::class)
+@RunWith(JUnit4::class)
 class CharactersViewModelTest {
 
-    private lateinit var charactersVm: CharactersViewModel
+    @get:Rule
+    val coroutineRule = MainCoroutineRule()
 
-    @Before
-    fun setUp() {
-        charactersVm = CharactersViewModel(
-            FetchCharacters(FakeRepositoryImpl()),
-            FetchSingleCharacter(FakeRepositoryImpl())
-        )
-    }
-
-    @After
-    fun tearDown() {
-    }
+    private val fetchCharacters = FetchCharacters(repository = FakeRepository())
+    private val fetchSingleCharacter = FetchSingleCharacter(repository = FakeRepository())
+    private val charactersVm = CharactersViewModel(
+        fetchCharacters, fetchSingleCharacter
+    )
 
     @Test
-    fun getFetchCharacters() {
-        runBlocking {
-            charactersVm.getCharacters()
-        }
-    }
-
-    @Test
-    fun getFetchSingleCharacterStatus() {
-    }
-
-    @Test
-    fun getSingleCharacter() {
+    fun `get characters should post UiState to fetchCharacterStatus`() = runBlocking {
     }
 }

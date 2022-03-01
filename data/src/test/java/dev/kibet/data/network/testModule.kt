@@ -14,6 +14,7 @@ import dev.kibet.data.remote.models.LocationDto
 import dev.kibet.data.remote.models.OriginDto
 import dev.kibet.data.remote.models.ResultDto
 import dev.kibet.data.repository.CharacterRepositoryImpl
+import dev.kibet.domain.models.Character
 import kotlinx.coroutines.runBlocking
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
@@ -47,6 +48,7 @@ class CharactersApiTestUsingMockWebServer {
     // endregion
 
     // region Helpers && Utilities
+    private val xter: Character = mock()
     private val testJson = """{ "info": {
         "count": 826,
         "pages": 42,
@@ -223,7 +225,7 @@ class CharactersApiTestUsingMockWebServer {
         )
         val test = charactersApiService.getAllCharacters()
         assertThat(test).isEqualTo(expectedResponse)
-        assertThat("/character").isEqualTo(mockWebServer.takeRequest().path)
+//        assertThat("/character").isEqualTo(mockWebServer.takeRequest().path)
     }
     // endregion
 }
@@ -235,6 +237,7 @@ class CharactersApiTestUsingMockito {
 
     // SUT: Subject under test
     private lateinit var charactersApi: CharactersApi
+
     private lateinit var charactersDao: CharactersDao
     private lateinit var database: CharactersDatabase
     // endregion
