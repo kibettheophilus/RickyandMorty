@@ -60,7 +60,8 @@ class CharacterRepositoryImplTest {
         "",
         ""
     )
-    private val responseDto = CharacterResponseDto(InfoDto(1, "", 2, 4f), listOf(characterDto, characterDto2))
+    private val responseDto =
+        CharacterResponseDto(InfoDto(1, "", 2, 4f), listOf(characterDto, characterDto2))
     private val characters = listOf(character, character2)
 
     @Before
@@ -84,9 +85,14 @@ class CharacterRepositoryImplTest {
     }
 
     @Test
-    fun getAllCharacters() = runBlocking {
+    fun getAllCharactersReturnsList() = runBlocking {
         assertThat(repositoryImpl.getAllCharacters()).isEqualTo(
             characters
         )
+    }
+
+    @Test
+    fun getAllCharactersReturnsEmptyList() = runBlocking {
+        assertThat(repositoryImpl.getAllCharacters().isEmpty()).isFalse()
     }
 }

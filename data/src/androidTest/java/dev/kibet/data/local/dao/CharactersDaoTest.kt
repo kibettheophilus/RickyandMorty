@@ -48,6 +48,14 @@ class CharactersDaoTest {
         assertThat(cacheResponse).isEqualTo(characters)
     }
 
+    //@Test
+    //email,password - success
+    //----, password - fail
+    // !email, password - fail
+    //emai
+
+
+
     @Test
     fun getCharacters() = runBlocking {
         val characterList = listOf(Character(11, "testOne", "")).map { it.toEntity() }

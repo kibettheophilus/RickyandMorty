@@ -39,7 +39,7 @@ class CharactersViewModel(
             } catch (e: IOException) {
                 mutablefetchCharactersStatus.value =
                     UiState.Error(e.localizedMessage ?: "Unknown error occured")
-            }
+            }   
         }
     }
 
