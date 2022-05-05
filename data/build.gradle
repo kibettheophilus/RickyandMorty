@@ -67,9 +67,6 @@ dependencies {
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0"
     androidTestImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0"
 
-//    //MockK
-//    testImplementation "io.mockk:mockk:1.10.0"
-//    androidTestImplementation "io.mockk:mockk:1.10.0"
 
     //Robolectric
     testImplementation "org.robolectric:robolectric:4.5.1"
