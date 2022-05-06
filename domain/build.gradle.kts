@@ -34,28 +34,27 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.7.0")
-    implementation("androidx.appcompat:appcompat:1.3.1")
-    implementation("com.google.android.material:material:1.4.0")
-    testImplementation("junit:junit:4.+")
-    testImplementation("com.google.truth:truth:1.1.3")
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+    implementation(Dependancies.androidXCore)
+    implementation(Dependancies.appCompat)
+    implementation(Dependancies.materialM)
+    testImplementation(Dependancies.jUnit4)
+    androidTestImplementation(Dependancies.androidJUnit)
+    androidTestImplementation(Dependancies.espresso)
 
     // koin
-    implementation("io.insert-koin:koin-android:3.1.3")
+    implementation(Dependancies.koin)
 
     // Coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1")
+    implementation(Dependancies.coroutinesCore)
+    implementation(Dependancies.coroutinesAndroid)
 
     // truth
-    testImplementation("com.google.truth:truth:1.1.3")
-    androidTestImplementation("com.google.truth:truth:1.1.3")
+    testImplementation(Dependancies.googleTruth)
+    androidTestImplementation(Dependancies.googleTruth)
     // Mockito
-    testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0")
-    androidTestImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0")
+    testImplementation(Dependancies.mockito)
+    androidTestImplementation(Dependancies.mockito)
 
     // Turbine
-    testImplementation("app.cash.turbine:turbine:0.6.0")
+    testImplementation(Dependancies.turbine)
 }

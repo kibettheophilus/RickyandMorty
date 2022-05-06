@@ -36,21 +36,21 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.7.0")
-    implementation("androidx.appcompat:appcompat:1.3.1")
-    implementation("com.google.android.material:material:1.4.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.1")
-    testImplementation("junit:junit:4.+")
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+    implementation(Dependancies.androidXCore)
+    implementation(Dependancies.appCompat)
+    implementation(Dependancies.materialM)
+    implementation(Dependancies.constraintLayout)
+    testImplementation(Dependancies.jUnit4)
+    androidTestImplementation(Dependancies.androidJUnit)
+    androidTestImplementation(Dependancies.espresso)
     implementation(project(Modules.Presentation))
     implementation(project(Modules.Domain))
     implementation(project(Modules.Data))
 
     // koin
-    implementation("io.insert-koin:koin-android:3.1.3")
+    implementation(Dependancies.koin)
 
     // firebase
-    implementation(platform("com.google.firebase:firebase-bom:29.0.0"))
-    implementation("com.google.firebase:firebase-analytics")
+    implementation(platform(Dependancies.firabaseBom))
+    implementation(Dependancies.firebaseAnalytics)
 }
