@@ -14,10 +14,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dev.kibet.domain.models.Character
 import dev.kibet.domain.models.state.UiState
+import dev.kibet.domain.utils.Resource.Companion.error
 import dev.kibet.presentation.adapters.CharactersAdapter
 import dev.kibet.presentation.databinding.FragmentHomeBinding
 import dev.kibet.presentation.viewmodel.CharactersViewModel
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
@@ -61,20 +63,20 @@ class HomeFragment : Fragment() {
 
     private fun setupViewModel() {
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-//            viewModel.fetchCharactersStatus.collect {
-//                when (it) {
-//                    is UiState.Success -> {
-//                        charactersAdapter.differ.submitList(it.data as List<Character>)
-//                        hideProgressBar()
-//                    }
-//                    is UiState.Loading -> progressBar.isVisible = true
-//                    is UiState.Error -> {
-//                        Toast.makeText(context, "${it.error}", Toast.LENGTH_LONG)
-//                            .show()
-//                        hideProgressBar()
-//                    }
-//                }
-//            }
+            viewModel.fetchCharactersStatus.collectLatest {
+                when (it) {
+                    is UiState.Success -> {
+                        charactersAdapter.differ.submitList(it.data as List<Character>)
+                        hideProgressBar()
+                    }
+                    is UiState.Loading -> progressBar.isVisible = true
+                    is UiState.Error -> {
+                        Toast.makeText(context, "${it.error}", Toast.LENGTH_LONG)
+                            .show()
+                        hideProgressBar()
+                    }
+                }
+            }
         }
     }
 

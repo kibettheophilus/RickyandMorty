@@ -62,9 +62,6 @@ dependencies {
 
     // Lifecycle Dependencies
     implementation(Dependancies.viewmodel)
-//    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.1")
-//    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
-//    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.1")
 
     // KTX for viewModels()
     implementation(Dependancies.activityKtx)
