@@ -73,4 +73,7 @@ dependencies {
 
     // MockWebServer
     testImplementation(Dependancies.mockwebserver)
+
+    // chucker
+    debugImplementation(Dependancies.chucker)
 }

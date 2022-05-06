@@ -33,6 +33,8 @@ object Dependancies {
 
     const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
 
+    const val chucker = "com.github.chuckerteam.chucker:library:3.5.2"
+
     // test
     const val jUnit4 = "junit:junit:4.+"
     const val androidJUnit = "androidx.test.ext:junit:1.1.3"
